@@ -29,7 +29,7 @@ function Circle(x, y, r){
 	 */
 }
 
-function cat(c, r){
+function Cat(c, r){
 	this.column = c;
 	this.row = r;
 	this.x = 0;
@@ -53,8 +53,8 @@ function cat(c, r){
 }
 
 function Game(ctx){
-	self.context = ctx;
-	self.start = function(){
+	this.context = ctx;
+	this.start = function(){
 		
 	};
 }
