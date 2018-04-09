@@ -111,8 +111,16 @@ function PlagGround(ctx){
 	
 	this.moveCat = function(){
 		this.lock  = true;
-		var 
+		var resultObj = this.findAvailablePosition();
+		if (!(resultObj.win || resultObj.lose)){
+			this.determinNext();		//will finish later, I will work another few hours, but no more update today.
+		}
+		return returnObj;
 	}
+	
+	/*
+	 * The following findAvailablePosition may has some bugs, I am really overwhelmed.
+	 */
 	this.findAvailablePosition = function(){
 		var currentPosition = this.cat.getCatPosition();
 		//Is === faster than == ?? Alec Chen 
@@ -137,16 +145,64 @@ function PlagGround(ctx){
 									   {row:currentPosition.row + 1, col:currentPosition.col, isAvailable: true}
 									   ];	
 		}
-		var noPlaceLeft = false;
+		//var noPlaceLeft = false;
 		/**
 		 * I believe there is something wrong, however I have a f**king headache and can not fix it now !@!!!!!!!!!!!!!!!   
 		 * 
 		 */
+		/*
 		for (var i = 0; i < this.availableLocations.length; ++i){
 			noPlaceLeft = this.grid[this.availableLocations[i].column][this.availableLocation[i].row].fill;
-			this.availableLocation[i].isAvailable = noPlaceLeft;
+			this.availableLocation[i].isAvailable = !noPlaceLeft;
 			
 		}
+		return {win:noPlacesLeft, lose:false};*/
+		
+		// Fuck !!!!!!!!!!! boommmmmmmmmm
+		//let's go back to the previous version
+		var placesLeft = false;
+		for (var i = 0; i < this.availableLocations.length; i++){
+			var tempc = this.availableLocations[i].colomn;
+			var tempr = this.availableLocations[i].row;
+			placesLeft = placesLeft || !self.grid[tempc][tempr].fill;
+			if (self.grid[tempc][tempr].fill){
+				this.availableLocations[i].isAvailable = false;
+			}
+		}
+		return {win:!placesLeft, lose:false};
+	};
+	//Finish the tiring f**king boring function, now i can try to go on.
+	
+	
+	//Ok let the f00king function like this, I wlii try it later, may be tomorrow!!!!
+	this.determinNext = function(){
+		var currentCatPosition = this.cat.getCurrentCatPosition();
+		var shortestPaths = this.getShortestPathsAll();					//Will change it latter 2018.4.9 22.21	Alec Chen
+		var direction = 0;
+		var gotoColumn = 0;
+		var gotoRow = 0;
+		if (shortestPaths.length === 0){
+			
+		}
+		
+		
+	};
+	this.getShortestPahtsAll = function(){
+		var currentPosition = this.cat.getCurrentCatPosition();
+		var startPos = [currentPosition.column, currentPosition.row];
+		var destination = [];
+		var pathList = [];
+		var path = [];
+		currentShortest = 130;//According to the size of our canvas
+		
+		for (var i = 0; i < this.numberOfBlocks; i++){
+			if (notBuildYet(0,i)){
+				destination = [0,i];
+			}
+		}
+	};
+	this.notBuildYet = function(r,c){
+		return !this.grid[r][c].fill;
 	}
 	
 	
