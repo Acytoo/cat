@@ -1,0 +1,170 @@
+body,html {
+  background-color: #4b4b4b;
+  color: #99ff99;
+  width:100%;
+  height: auto;
+}
+.person {
+  position: absolute;
+  height: 175px;
+  width: 0;
+  left: 30%;
+  top: 200px;
+  transform-origin: 50% 50% 0px;/*Set a rotated element's base placement:*/
+  -webkit-animation: sprint 2s infinite ease-in;
+}
+.person .head:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -6px;
+  height: 2.7px;
+  width: 42px;
+  border-radius: 20%;
+  border: 4px solid red;
+  color： red;
+  background-color: red;
+  transform-origin: 50% 100% 0px;
+  z-index: 7;
+}
+.person .head {/*face*/
+  position: absolute;
+  top: -30px;
+  left: -6px;
+  height: 30px;
+  width: 30px;
+  color:red;
+  border-radius: 50%;
+  border: 4px solid white;
+  transform-origin: 50% 100% 0px;
+  z-index: 7;  /*where the part will place*/
+  -webkit-animation: bob 2s infinite alternate;
+}
+.person .head:after { /*hat*/
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 6px;
+  height: 12px;
+  width: 15px;
+  border-radius: 30%;
+  border: 4px solid red;
+  background-color: red;
+  z-index: 7;
+}
+.person .torso {
+  position: absolute;
+  height: 60px;
+  width: 0;
+  border-left: 2px solid white;
+  left: 0px;
+  top: 15px;
+  z-index: 7;
+}
+.person .part {
+  position: absolute;
+  left: 0;
+  top: 75px;
+  z-index: 7;
+}
+.person .part.arm {
+  position: absolute;
+  border-left: 3px solid white;
+  border-bottom: 3px solid white;
+  height: 45px;
+  width: 39px;
+  top: 15px;
+  right: 300px;
+  transform-origin: 0% 0% 0px;
+  -webkit-animation: pump 1s infinite ease-in-out;
+  /*The wave of arms*/
+}
+.person .part.arm.one {
+  transform: rotate3d(0, 0, 1, -90deg);
+}
+.person .part.arm.two {
+  transform: rotate3d(0, 0, 1, -90deg);
+  animation-delay: .5s;
+}
+.person .part.leg {
+  height: 57px;
+  width: 60px;
+  border-right: 3px solid white;
+  border-top: 3px solid white;
+  -webkit-animation: run 1s infinite ease-in;
+  transform-origin: 0% 0% 0px;
+}
+.person .part.leg.one {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.person .part.leg.two {
+  transform: rotate3d(0, 0, 1, 80deg);
+  animation-delay: .5s;
+}
+
+@keyframes run {
+  0% {
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+  50% {
+    /*transform: rotate3d(0, 0, 1, 150deg);*/
+    transform:rotateZ(150deg);
+    /*I believe all these is fine*/
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+}
+@keyframes bob {
+  0% {
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+  25% {
+    transform: rotate3d(0, 0, 1, -30deg) skew(15deg, 0deg);
+  }
+  50% {
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+  75% {
+    transform: rotate3d(0, 0, 1, -30deg) skew(15deg, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 20deg) skew(-15deg, 0deg);
+  }
+}
+@keyframes pump {
+  0% {
+    transform: rotate3d(0, 0, 1, 80deg);
+  }
+  50% {
+    transform: rotate3d(0, 0, 1, -70deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 80deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate3d(0, 0, 1, -180deg);
+  }
+  25% {
+    transform: rotate3d(0, 0, 1, -100deg);
+  }
+  75% {
+    transform: rotate3d(0, 0, 1, 100deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+}
+@keyframes sprint {
+  0% {
+    transform-origin: 50% 50% 0px;
+    transform: translate(-500px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+    transform-origin: 50% 50% 0px;
+    transform: translate(500px, 0px);
+  }
+}
